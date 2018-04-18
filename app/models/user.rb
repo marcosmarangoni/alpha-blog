@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :articles
+
+  before_save { self.email = email.downcase }
+
   #Validation for the username
   validates :username, presence: true, length:{ minimum: 5, maximum: 25 }, uniqueness: {case_sensitive: false}
   #Validation for the email
